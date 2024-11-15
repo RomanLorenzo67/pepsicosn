@@ -1,0 +1,849 @@
+/* Hecho por Diana G.*/
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transporte Pepsico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            position: relative;
+        }
+
+        .header-image {
+            width: 100%;
+            height: 100px; /* Ajusta la altura para que la imagen sea delgada */
+            object-fit: cover; /* Para asegurar que la imagen cubra toda el área sin distorsionarse */
+            margin-bottom: 20px;
+        }
+
+        .container {
+            width: 80%;
+            overflow-y: auto;
+        }
+
+        .progress-container {
+            background-color: #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .progress-wrapper {
+            width: 100%;
+        }
+
+        .progress-responsibilities {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 5px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .progress-segment {
+            height: 70px;
+            flex: 1;
+            transition: opacity 1s linear;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            position: relative;
+            flex-direction: column;
+        }
+
+        .segment-1 { background-color: #76c7c0; }
+        .segment-2 { background-color: #ff6f61; }
+        .segment-3 { background-color: #f9a602; }
+        .segment-4 { background-color: #28a745; }
+        .segment-5 { background-color: #6f42c1; }
+        .segment-6 { background-color: #dc3545; }
+        .segment-7 { background-color: #17a2b8; }
+
+        .responsibility {
+            flex: 1;
+            margin: 0 2px;
+        }
+
+        .progress-bar-container {
+            display: flex;
+            width: 100%;
+        }
+
+        .time-counter {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .control-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 20px 0;
+        }
+
+        .control-button:hover {
+            background-color: #0056b3;
+        }
+
+        .input-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            padding: 15px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .input-group {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .input-group:last-child {
+            margin-right: 0;
+        }
+
+        .input-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .divider {
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            margin: 20px 0;
+            border: none;
+        }
+
+        .bottom-image {
+            position: absolute;
+            height: 150px; /* Ajusta la altura según sea necesario */
+            width: 50%;
+            object-fit: cover;
+        }
+
+        .left-bottom {
+            bottom: 10px;
+            left: 0;
+        }
+
+        .right-bottom {
+            bottom: 10px;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Imagen en la parte superior -->
+    <img src="img1.jpg" alt="Header Image" class="header-image">
+
+    <div class="container">
+        <!-- 10 instancias de la barra de progreso y cronómetros -->
+        <!-- Instance 1 -->
+        <div class="progress-container">
+            <div class="progress-wrapper">
+                <div class="progress-responsibilities">
+                    <div class="responsibility">Bodega de Maquilador</div>
+                    <div class="responsibility">CDAC</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Planeación de la orden</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Maquilador</div>
+                    <div class="responsibility">Impresiones</div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-segment segment-1">
+                        <span>Maquilador a CDAC</span>
+                        <div class="time-counter" id="timer-1-1">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-2">
+                        <span>CDAC</span>
+                        <div class="time-counter" id="timer-1-2">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-3">
+                        <span>Confirmación de CDAC</span>
+                        <div class="time-counter" id="timer-1-3">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-4">
+                        <span>Compra de Remisión</span>
+                        <div class="time-counter" id="timer-1-4">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-5">
+                        <span>Contabilización</span>
+                        <div class="time-counter" id="timer-1-5">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-6">
+                        <span>Facturación</span>
+                        <div class="time-counter" id="timer-1-6">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-7">
+                        <span>Impresiones</span>
+                        <div class="time-counter" id="timer-1-7">00:00:00</div>
+                    </div>
+                </div>
+                <button class="control-button" data-instance="1">Next Timer</button>
+                <div class="input-container">
+                    <div class="input-group">
+                        <label for="trip-number-1">Número de Viaje</label>
+                        <input type="text" id="trip-number-1" name="trip-number">
+                    </div>
+                    <div class="input-group">
+                        <label for="transport-line-1">Línea Transportista</label>
+                        <input type="text" id="transport-line-1" name="transport-line">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        
+        <!-- Instance 2 -->
+        <div class="progress-container">
+            <div class="progress-wrapper">
+                <div class="progress-responsibilities">
+                    <div class="responsibility">Bodega de Maquilador</div>
+                    <div class="responsibility">CDAC</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Planeación de la orden</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Maquilador</div>
+                    <div class="responsibility">Impresiones</div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-segment segment-1">
+                        <span>Maquilador a CDAC</span>
+                        <div class="time-counter" id="timer-2-1">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-2">
+                        <span>CDAC</span>
+                        <div class="time-counter" id="timer-2-2">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-3">
+                        <span>Confirmación de CDAC</span>
+                        <div class="time-counter" id="timer-2-3">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-4">
+                        <span>Compra de Remisión</span>
+                        <div class="time-counter" id="timer-2-4">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-5">
+                        <span>Contabilización</span>
+                        <div class="time-counter" id="timer-2-5">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-6">
+                        <span>Facturación</span>
+                        <div class="time-counter" id="timer-2-6">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-7">
+                        <span>Impresiones</span>
+                        <div class="time-counter" id="timer-2-7">00:00:00</div>
+                    </div>
+                </div>
+                <button class="control-button" data-instance="2">Next Timer</button>
+                <div class="input-container">
+                    <div class="input-group">
+                        <label for="trip-number-2">Número de Viaje</label>
+                        <input type="text" id="trip-number-2" name="trip-number">
+                    </div>
+                    <div class="input-group">
+                        <label for="transport-line-2">Línea Transportista</label>
+                        <input type="text" id="transport-line-2" name="transport-line">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        
+        <!-- Instancias adicionales (Instance 3 a 10) deben agregarse aquí de manera similar -->
+         <!-- Instance 3 -->
+         <div class="progress-container">
+            <div class="progress-wrapper">
+                <div class="progress-responsibilities">
+                    <div class="responsibility">Bodega de Maquilador</div>
+                    <div class="responsibility">CDAC</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Planeación de la orden</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Maquilador</div>
+                    <div class="responsibility">Impresiones</div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-segment segment-1">
+                        <span>Maquilador a CDAC</span>
+                        <div class="time-counter" id="timer-3-1">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-2">
+                        <span>CDAC</span>
+                        <div class="time-counter" id="timer-3-2">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-3">
+                        <span>Confirmación de CDAC</span>
+                        <div class="time-counter" id="timer-3-3">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-4">
+                        <span>Compra de Remisión</span>
+                        <div class="time-counter" id="timer-3-4">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-5">
+                        <span>Contabilización</span>
+                        <div class="time-counter" id="timer-3-5">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-6">
+                        <span>Facturación</span>
+                        <div class="time-counter" id="timer-3-6">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-7">
+                        <span>Impresiones</span>
+                        <div class="time-counter" id="timer-3-7">00:00:00</div>
+                    </div>
+                </div>
+                <button class="control-button" data-instance="3">Next Timer</button>
+                <div class="input-container">
+                    <div class="input-group">
+                        <label for="trip-number-3">Número de Viaje</label>
+                        <input type="text" id="trip-number-3" name="trip-number">
+                    </div>
+                    <div class="input-group">
+                        <label for="transport-line-3">Línea Transportista</label>
+                        <input type="text" id="transport-line-3" name="transport-line">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        
+        <!-- Instance 4 -->
+        <div class="progress-container">
+            <div class="progress-wrapper">
+                <div class="progress-responsibilities">
+                    <div class="responsibility">Bodega de Maquilador</div>
+                    <div class="responsibility">CDAC</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Planeación de la orden</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Maquilador</div>
+                    <div class="responsibility">Impresiones</div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-segment segment-1">
+                        <span>Maquilador a CDAC</span>
+                        <div class="time-counter" id="timer-4-1">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-2">
+                        <span>CDAC</span>
+                        <div class="time-counter" id="timer-4-2">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-3">
+                        <span>Confirmación de CDAC</span>
+                        <div class="time-counter" id="timer-4-3">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-4">
+                        <span>Compra de Remisión</span>
+                        <div class="time-counter" id="timer-4-4">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-5">
+                        <span>Contabilización</span>
+                        <div class="time-counter" id="timer-4-5">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-6">
+                        <span>Facturación</span>
+                        <div class="time-counter" id="timer-4-6">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-7">
+                        <span>Impresiones</span>
+                        <div class="time-counter" id="timer-4-7">00:00:00</div>
+                    </div>
+                </div>
+                <button class="control-button" data-instance="4">Next Timer</button>
+                <div class="input-container">
+                    <div class="input-group">
+                        <label for="trip-number-4">Número de Viaje</label>
+                        <input type="text" id="trip-number-4" name="trip-number">
+                    </div>
+                    <div class="input-group">
+                        <label for="transport-line-4">Línea Transportista</label>
+                        <input type="text" id="transport-line-4" name="transport-line">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+         <!-- Instance 5 -->
+         <div class="progress-container">
+            <div class="progress-wrapper">
+                <div class="progress-responsibilities">
+                    <div class="responsibility">Bodega de Maquilador</div>
+                    <div class="responsibility">CDAC</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Planeación de la orden</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Maquilador</div>
+                    <div class="responsibility">Impresiones</div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-segment segment-1">
+                        <span>Maquilador a CDAC</span>
+                        <div class="time-counter" id="timer-5-1">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-2">
+                        <span>CDAC</span>
+                        <div class="time-counter" id="timer-5-2">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-3">
+                        <span>Confirmación de CDAC</span>
+                        <div class="time-counter" id="timer-5-3">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-4">
+                        <span>Compra de Remisión</span>
+                        <div class="time-counter" id="timer-5-4">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-5">
+                        <span>Contabilización</span>
+                        <div class="time-counter" id="timer-5-5">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-6">
+                        <span>Facturación</span>
+                        <div class="time-counter" id="timer-5-6">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-7">
+                        <span>Impresiones</span>
+                        <div class="time-counter" id="timer-5-7">00:00:00</div>
+                    </div>
+                </div>
+                <button class="control-button" data-instance="5">Next Timer</button>
+                <div class="input-container">
+                    <div class="input-group">
+                        <label for="trip-number-5">Número de Viaje</label>
+                        <input type="text" id="trip-number-5" name="trip-number">
+                    </div>
+                    <div class="input-group">
+                        <label for="transport-line-5">Línea Transportista</label>
+                        <input type="text" id="transport-line-5" name="transport-line">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        
+        <!-- Instance 6 -->
+        <div class="progress-container">
+            <div class="progress-wrapper">
+                <div class="progress-responsibilities">
+                    <div class="responsibility">Bodega de Maquilador</div>
+                    <div class="responsibility">CDAC</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Planeación de la orden</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Maquilador</div>
+                    <div class="responsibility">Impresiones</div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-segment segment-1">
+                        <span>Maquilador a CDAC</span>
+                        <div class="time-counter" id="timer-6-1">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-2">
+                        <span>CDAC</span>
+                        <div class="time-counter" id="timer-6-2">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-3">
+                        <span>Confirmación de CDAC</span>
+                        <div class="time-counter" id="timer-6-3">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-4">
+                        <span>Compra de Remisión</span>
+                        <div class="time-counter" id="timer-6-4">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-5">
+                        <span>Contabilización</span>
+                        <div class="time-counter" id="timer-6-5">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-6">
+                        <span>Facturación</span>
+                        <div class="time-counter" id="timer-6-6">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-7">
+                        <span>Impresiones</span>
+                        <div class="time-counter" id="timer-6-7">00:00:00</div>
+                    </div>
+                </div>
+                <button class="control-button" data-instance="6">Next Timer</button>
+                <div class="input-container">
+                    <div class="input-group">
+                        <label for="trip-number-6">Número de Viaje</label>
+                        <input type="text" id="trip-number-6" name="trip-number">
+                    </div>
+                    <div class="input-group">
+                        <label for="transport-line-6">Línea Transportista</label>
+                        <input type="text" id="transport-line-6" name="transport-line">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+         <!-- Instance 7 -->
+         <div class="progress-container">
+            <div class="progress-wrapper">
+                <div class="progress-responsibilities">
+                    <div class="responsibility">Bodega de Maquilador</div>
+                    <div class="responsibility">CDAC</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Planeación de la orden</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Maquilador</div>
+                    <div class="responsibility">Impresiones</div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-segment segment-1">
+                        <span>Maquilador a CDAC</span>
+                        <div class="time-counter" id="timer-7-1">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-2">
+                        <span>CDAC</span>
+                        <div class="time-counter" id="timer-7-2">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-3">
+                        <span>Confirmación de CDAC</span>
+                        <div class="time-counter" id="timer-7-3">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-4">
+                        <span>Compra de Remisión</span>
+                        <div class="time-counter" id="timer-7-4">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-5">
+                        <span>Contabilización</span>
+                        <div class="time-counter" id="timer-7-5">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-6">
+                        <span>Facturación</span>
+                        <div class="time-counter" id="timer-7-6">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-7">
+                        <span>Impresiones</span>
+                        <div class="time-counter" id="timer-7-7">00:00:00</div>
+                    </div>
+                </div>
+                <button class="control-button" data-instance="7">Next Timer</button>
+                <div class="input-container">
+                    <div class="input-group">
+                        <label for="trip-number-1">Número de Viaje</label>
+                        <input type="text" id="trip-number-7" name="trip-number">
+                    </div>
+                    <div class="input-group">
+                        <label for="transport-line-7">Línea Transportista</label>
+                        <input type="text" id="transport-line-7" name="transport-line">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        
+        <!-- Instance 8 -->
+        <div class="progress-container">
+            <div class="progress-wrapper">
+                <div class="progress-responsibilities">
+                    <div class="responsibility">Bodega de Maquilador</div>
+                    <div class="responsibility">CDAC</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Planeación de la orden</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Maquilador</div>
+                    <div class="responsibility">Impresiones</div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-segment segment-1">
+                        <span>Maquilador a CDAC</span>
+                        <div class="time-counter" id="timer-8-1">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-2">
+                        <span>CDAC</span>
+                        <div class="time-counter" id="timer-8-2">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-3">
+                        <span>Confirmación de CDAC</span>
+                        <div class="time-counter" id="timer-8-3">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-4">
+                        <span>Compra de Remisión</span>
+                        <div class="time-counter" id="timer-8-4">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-5">
+                        <span>Contabilización</span>
+                        <div class="time-counter" id="timer-8-5">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-6">
+                        <span>Facturación</span>
+                        <div class="time-counter" id="timer-8-6">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-7">
+                        <span>Impresiones</span>
+                        <div class="time-counter" id="timer-8-7">00:00:00</div>
+                    </div>
+                </div>
+                <button class="control-button" data-instance="8">Next Timer</button>
+                <div class="input-container">
+                    <div class="input-group">
+                        <label for="trip-number-8">Número de Viaje</label>
+                        <input type="text" id="trip-number-8" name="trip-number">
+                    </div>
+                    <div class="input-group">
+                        <label for="transport-line-8">Línea Transportista</label>
+                        <input type="text" id="transport-line-8" name="transport-line">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+         <!-- Instance 9 -->
+         <div class="progress-container">
+            <div class="progress-wrapper">
+                <div class="progress-responsibilities">
+                    <div class="responsibility">Bodega de Maquilador</div>
+                    <div class="responsibility">CDAC</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Planeación de la orden</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Maquilador</div>
+                    <div class="responsibility">Impresiones</div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-segment segment-1">
+                        <span>Maquilador a CDAC</span>
+                        <div class="time-counter" id="timer-9-1">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-2">
+                        <span>CDAC</span>
+                        <div class="time-counter" id="timer-9-2">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-3">
+                        <span>Confirmación de CDAC</span>
+                        <div class="time-counter" id="timer-9-3">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-4">
+                        <span>Compra de Remisión</span>
+                        <div class="time-counter" id="timer-9-4">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-5">
+                        <span>Contabilización</span>
+                        <div class="time-counter" id="timer-9-5">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-6">
+                        <span>Facturación</span>
+                        <div class="time-counter" id="timer-9-6">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-7">
+                        <span>Impresiones</span>
+                        <div class="time-counter" id="timer-9-7">00:00:00</div>
+                    </div>
+                </div>
+                <button class="control-button" data-instance="9">Next Timer</button>
+                <div class="input-container">
+                    <div class="input-group">
+                        <label for="trip-number-9">Número de Viaje</label>
+                        <input type="text" id="trip-number-9" name="trip-number">
+                    </div>
+                    <div class="input-group">
+                        <label for="transport-line-9">Línea Transportista</label>
+                        <input type="text" id="transport-line-9" name="transport-line">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        
+        <!-- Instance 10 -->
+        <div class="progress-container">
+            <div class="progress-wrapper">
+                <div class="progress-responsibilities">
+                    <div class="responsibility">Bodega de Maquilador</div>
+                    <div class="responsibility">CDAC</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Planeación de la orden</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Maquilador</div>
+                    <div class="responsibility">Impresiones</div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-segment segment-1">
+                        <span>Maquilador a CDAC</span>
+                        <div class="time-counter" id="timer-10-1">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-2">
+                        <span>CDAC</span>
+                        <div class="time-counter" id="timer-10-2">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-3">
+                        <span>Confirmación de CDAC</span>
+                        <div class="time-counter" id="timer-10-3">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-4">
+                        <span>Compra de Remisión</span>
+                        <div class="time-counter" id="timer-10-4">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-5">
+                        <span>Contabilización</span>
+                        <div class="time-counter" id="timer-10-5">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-6">
+                        <span>Facturación</span>
+                        <div class="time-counter" id="timer-10-6">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-7">
+                        <span>Impresiones</span>
+                        <div class="time-counter" id="timer-10-7">00:00:00</div>
+                    </div>
+                </div>
+                <button class="control-button" data-instance="10">Next Timer</button>
+                <div class="input-container">
+                    <div class="input-group">
+                        <label for="trip-number-10">Número de Viaje</label>
+                        <input type="text" id="trip-number-10" name="trip-number">
+                    </div>
+                    <div class="input-group">
+                        <label for="transport-line-10">Línea transportista</label>
+                        <input type="text" id="transport-line-10" name="transport-line">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+         <!-- Instance 11 -->
+         <div class="progress-container">
+            <div class="progress-wrapper">
+                <div class="progress-responsibilities">
+                    <div class="responsibility">Bodega de Maquilador</div>
+                    <div class="responsibility">CDAC</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Planeación de la orden</div>
+                    <div class="responsibility">Verificación SMO</div>
+                    <div class="responsibility">Maquilador</div>
+                    <div class="responsibility">Impresiones</div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-segment segment-1">
+                        <span>Maquilador a CDAC</span>
+                        <div class="time-counter" id="timer-10-1">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-2">
+                        <span>CDAC</span>
+                        <div class="time-counter" id="timer-10-2">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-3">
+                        <span>Confirmación de CDAC</span>
+                        <div class="time-counter" id="timer-10-3">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-4">
+                        <span>Compra de Remisión</span>
+                        <div class="time-counter" id="timer-10-4">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-5">
+                        <span>Contabilización</span>
+                        <div class="time-counter" id="timer-10-5">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-6">
+                        <span>Facturación</span>
+                        <div class="time-counter" id="timer-10-6">00:00:00</div>
+                    </div>
+                    <div class="progress-segment segment-7">
+                        <span>Impresiones</span>
+                        <div class="time-counter" id="timer-10-7">00:00:00</div>
+                    </div>
+                </div>
+              
+
+    </div>
+
+    <!-- Imágenes en la parte inferior -->
+    <img src="img2.jpg" alt="Bottom Image Left" class="bottom-image left-bottom">
+    <img src="img3.jpg" alt="Bottom Image Right" class="bottom-image right-bottom">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const timeLimits = [12600, 1800, 300, 300, 1200, 300, 1200]; // Limites de tiempo en segundos para cada etapa
+            const intervals = {}; // Para almacenar los intervalos de los temporizadores
+            const currentSegment = {}; // Para almacenar el segmento actual de cada instancia
+
+            function startTimer(instanceIndex, segmentIndex) {
+                const timerId = `timer-${instanceIndex}-${segmentIndex + 1}`;
+                const timerElement = document.getElementById(timerId);
+                const startTime = Date.now();
+                const duration = timeLimits[segmentIndex];
+
+                function updateTimer() {
+                    const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+                    const remainingTime = duration - elapsedTime;
+
+                    if (remainingTime <= 0) {
+                        clearInterval(intervals[timerId]);
+                        timerElement.textContent = "00:00:00";
+                    } else {
+                        const hours = Math.floor(remainingTime / 3600);
+                        const minutes = Math.floor((remainingTime % 3600) / 60);
+                        const seconds = remainingTime % 60;
+
+                        timerElement.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                    }
+                }
+
+                clearInterval(intervals[timerId]);
+                intervals[timerId] = setInterval(updateTimer, 1000);
+                updateTimer();
+            }
+
+            function stopAllTimers(instanceIndex) {
+                for (let i = 0; i < timeLimits.length; i++) {
+                    const timerId = `timer-${instanceIndex}-${i + 1}`;
+                    clearInterval(intervals[timerId]);
+                }
+            }
+
+            document.querySelectorAll('.control-button').forEach(button => {
+                const instanceIndex = button.getAttribute('data-instance');
+                currentSegment[instanceIndex] = 0;
+
+                button.addEventListener('click', function () {
+                    const segmentIndex = currentSegment[instanceIndex];
+
+                    stopAllTimers(instanceIndex);
+
+                    if (segmentIndex < timeLimits.length) {
+                        startTimer(instanceIndex, segmentIndex);
+                        currentSegment[instanceIndex]++;
+                    } else {
+                        currentSegment[instanceIndex] = 0;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+/* Hecho por Diana G.*/41
